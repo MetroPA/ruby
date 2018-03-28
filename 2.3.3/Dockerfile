@@ -7,8 +7,15 @@ COPY sshd_config /etc/ssh/
 COPY hostingstart.html /home/site/wwwroot/hostingstart.html
 COPY staticsite.rb /opt/staticsite.rb
 
-RUN apt-get update -qq \
-    && apt-get install -y nodejs openssh-server vim curl wget tcptraceroute --no-install-recommends \
+RUN apt-get update -qq
+
+# Install imagemagick and dependencies.
+RUN apt-get install -y checkinstall build-dep imagemagick
+
+# Install wkhtmltopdf dependencies.
+RUN apt-get install -y xvfb libfontconfig
+
+RUN apt-get install -y nodejs openssh-server vim curl wget tcptraceroute --no-install-recommends \
     && echo "root:Docker!" | chpasswd \
     && echo "cd /home" >> /etc/bash.bashrc
 
