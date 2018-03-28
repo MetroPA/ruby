@@ -10,7 +10,7 @@ COPY staticsite.rb /opt/staticsite.rb
 RUN apt-get update -qq
 
 # Install imagemagick and dependencies.
-RUN apt-get install -y checkinstall build-dep imagemagick
+RUN apt-get install -y imagemagick
 
 # Install wkhtmltopdf dependencies.
 RUN apt-get install -y xvfb libfontconfig
