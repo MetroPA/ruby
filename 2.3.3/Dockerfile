@@ -20,11 +20,12 @@ RUN apt-get install -y nodejs openssh-server vim curl wget tcptraceroute --no-in
     && echo "cd /home" >> /etc/bash.bashrc
 
 RUN apt-get purge -y freetds-dev freetds-bin freetds-common && \
+  rm -f /usr/bin/tsql && \
   apt-get install -y  libc6-dev && \
   wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-1.00.86.tar.gz \
   && tar -xvf freetds-1.00.86.tar.gz \
   && cd freetds-1.00.86 \
-  && ./configure --prefix=/usr/local --with-tdsver=7.3 \
+  && ./configure --prefix=/usr --with-tdsver=7.3 \
   && make \
   && make install
 
