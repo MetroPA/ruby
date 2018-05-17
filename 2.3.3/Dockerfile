@@ -22,9 +22,9 @@ RUN apt-get install -y nodejs openssh-server vim curl wget tcptraceroute --no-in
 RUN apt-get purge -y freetds-dev freetds-bin freetds-common && \
   rm -f /usr/bin/tsql && \
   apt-get install -y  libc6-dev && \
-  wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-1.00.86.tar.gz \
-  && tar -xvf freetds-1.00.86.tar.gz \
-  && cd freetds-1.00.86 \
+  wget http://www.freetds.org/files/stable/freetds-1.00.tar.gz \
+  && tar -xvf freetds-1.00.tar.gz \
+  && cd freetds-1.00 \
   && ./configure --prefix=/usr --with-tdsver=7.3 \
   && make \
   && make install
