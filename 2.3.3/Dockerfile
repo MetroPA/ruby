@@ -19,6 +19,15 @@ RUN apt-get install -y nodejs openssh-server vim curl wget tcptraceroute --no-in
     && echo "root:Docker!" | chpasswd \
     && echo "cd /home" >> /etc/bash.bashrc
 
+RUN apt-get purge freetds-dev freetds-bin && \
+  apt-get install -y  libc6-dev && \
+  wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-1.00.86.tar.gz \
+  && tar -xvf freetds-1.00.86.tar.gz \
+  && cd freetds-1.00.86 \
+  && ./configure --prefix=/usr/local --with-tdsver=7.3 \
+  && make \
+  && make install
+
 RUN eval "$(rbenv init -)" \
   && rbenv global 2.3.3
 
