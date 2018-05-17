@@ -19,7 +19,7 @@ RUN apt-get install -y nodejs openssh-server vim curl wget tcptraceroute --no-in
     && echo "root:Docker!" | chpasswd \
     && echo "cd /home" >> /etc/bash.bashrc
 
-RUN apt-get purge -y freetds-dev freetds-bin && \
+RUN apt-get purge -y freetds-dev freetds-bin freetds-common && \
   apt-get install -y  libc6-dev && \
   wget ftp://ftp.freetds.org/pub/freetds/stable/freetds-1.00.86.tar.gz \
   && tar -xvf freetds-1.00.86.tar.gz \
